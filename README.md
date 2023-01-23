@@ -33,7 +33,7 @@ Para clonar o repositório, insira as seguintes linhas de comando no Node.js com
 
 ```sh
 $ cd c:/xampp/htdocs
-$ git clone https://github.com/setydeias/painel.git
+$ git clone https://github.com/setydeias/painel-setyware.git
 ```
 Login: setydeias
 Senha: "padrão"
