@@ -1,0 +1,85 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+#
+# INÍCIO
+#
+
+RewriteRule ^login/?$ /painel/build/php/views/login.php [NC,L] # Login
+
+#
+# EXPORTAR
+#
+
+RewriteRule ^exportar-remessa-grafica/?$ /painel/build/php/views/exportar-remessa-grafica.php [NC,L] # Exportar remessa para a gráfica
+RewriteRule ^exportar-remessa-registro/?$ /painel/build/php/views/exportar-remessa-registro.php [NC,L] # Exportar remessa para registrar
+RewriteRule ^exportar-contas-transitorias/?$ /painel/build/php/views/exportar-contas-transitorias.php [NC,L] # Exportar remessa para o banco
+RewriteRule ^exportar-adm77777/?$ /painel/build/php/views/exportar-adm77777.php [NC,L] # Upload ADM77777
+
+#
+# PROCESSAR
+#
+
+RewriteRule ^index/?$ /painel/index.php [NC,L] # Início
+RewriteRule ^processamento-retornos/?$ /painel/build/php/views/processamento-retornos.php [NC,L] # Processamento de Retornos
+RewriteRule ^processamento-remessas/?$ /painel/build/php/remessas/processamento-remessas.php [NC,L] # Processamento de Remessas
+RewriteRule ^remessas/?$ /painel/build/php/views/remessas.php [NC,L] # Remessas para gráfica
+RewriteRule ^registrar-remessas/?$ /painel/build/php/views/registrar-remessas.php [NC,L] # Remessas para registrar
+RewriteRule ^conversor/?$ /painel/build/php/views/conversor.php [NC,L] # Tela de conversores
+RewriteRule ^create-return-file/?$ /painel/build/php/views/create-retorno.php [NC,L] # Criação de retorno
+RewriteRule ^mensalidades/?$ /painel/build/php/views/mensalidades.php [NC,L] # Processamento de mensalidades
+RewriteRule ^sync-database/?$ /painel/build/php/views/sincronizar-bases.php [NC,L] # Sincronização das bases de dados no Servidor nas Nuvens
+
+#
+# GERENCIAR
+#
+
+RewriteRule ^list/customers/?$ /painel/build/php/views/listar-clientes.php [NC,L] # Listagem de clientes
+RewriteRule ^add/customer/?$ /painel/build/php/views/cadastrar-cliente.php [NC,L] # Clientes
+RewriteRule ^convenio-de-cobranca/?$ /painel/build/php/views/convenio-de-cobranca.php [NC,L] # Convênio de cobrança
+RewriteRule ^edit/customer/([0-9]+)/?$ /painel/build/php/views/edit-customer.php [NC,L] # Listagem de clientes
+RewriteRule ^list/remessas/?$ /painel/build/php/views/fluxo-remessas.php [NC,L] # Fluxo de Remessas
+RewriteRule ^parametros/?$ /painel/build/php/views/parametros.php [NC,L] # Parâmetros
+RewriteRule ^reset-password/?$ /painel/build/php/views/resetar-senha-2via.php [NC,L] # Resetar senha da 2º via
+RewriteRule ^users/?$ /painel/build/php/views/gerenciar-usuarios.php [NC,L] # Usuários do sistema
+RewriteRule ^users/add/?$ /painel/build/php/views/adicionar-usuario.php [NC,L] # Adicionar usuário do sistema
+RewriteRule ^users/edit/([0-9]+)/?$ /painel/build/php/views/editar-usuario.php [NC,L] # Editar usuários do sistema
+RewriteRule ^edit/premio/([0-9]+)/?$ /painel/build/php/views/premio-adimplencia.php [NC,L] # Cadastrar estrutura das unidades do Prêmio adimplêcia
+RewriteRule ^premio-adimplencia/?$ /painel/build/php/views/sorteio-premio-adimplencia.php [NC,L] # Gerenciamento dos sorteios do Prêmino adimplência com base na Loteria Federal
+#
+# CONSULTAR
+#
+
+RewriteRule ^gerenciar-remessas-banco/?$ /painel/build/php/views/gerenciar-remessa-banco.php [NC,L] # Gerenciar remessas para banco
+RewriteRule ^consultar-ocorrencias-retornos/?$ /painel/build/php/views/consultar-ocorrencias-retorno.php [NC,L] # Retorna todas as ocorrências de acordo com o nosso número informado
+
+#
+# EDITAR
+#
+
+RewriteRule ^remessa/([a-z]+)/([0-9]+)/?$ /painel/build/php/views/detail-remessa.php?sigla=$1&$id=$2 [NC,L] # Detalhamento de Remessa
+
+
+</IfModule>
+
+<IfModule mod_gzip.c>
+mod_gzip_on Yes
+mod_gzip_dechunk Yes
+mod_gzip_item_include file .(html?|css|js|php)$
+mod_gzip_item_include handler ^cgi-script$
+mod_gzip_item_include mime ^text/.*
+mod_gzip_item_include mime ^application/javascript.*
+mod_gzip_item_exclude mime ^image/.*
+mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
+</IfModule>
+
+#<IfModule mod_expires.c>
+#ExpiresActive On
+#<FilesMatch "\.(ico|jpg|jpeg|png|gif|js|css)$">
+#ExpiresDefault "access plus 5 days"
+#</FilesMatch>
+#</IfModule>

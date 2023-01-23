@@ -1,0 +1,19 @@
+#Node_modules
+node_modules/
+npm-debug.log
+
+#Composer
+vendor/
+
+#Arquivos JS comprimidos
+build/js/min/
+
+#Arquivos JS/CSS comprimidos e minificados
+src/
+dist
+
+#VS Code Editor
+.vscode
+
+#Sass
+.sass-cache
